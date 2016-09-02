@@ -1,0 +1,2 @@
+# LQZJ
+idle panic
