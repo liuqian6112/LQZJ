@@ -11,8 +11,4 @@
         <setting name="cacheEnabled" value="false" />
     </settings>
 
-    <typeAliases>
-        <typeAlias alias="Record" type="com.moto.ecomm.cms.model.Record"/>
-    </typeAliases>
-
 </configuration>

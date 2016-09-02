@@ -2,12 +2,16 @@ package com.lqzj.web.service;
 
 import com.google.common.collect.Maps;
 import com.lqzj.common.thread.ThreadPool;
+import org.apache.commons.lang.math.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +38,9 @@ public class ThreadService {
 
     @Autowired
     private ThreadPool threadPool;
+
+    @Value("${merge.salt}")
+    private String mergeSalt;
 
     public String mergeNum(Integer num) {
         return mergeNum(num, MERGE_TIME_OUT_IN_SECONDS);
@@ -88,11 +95,18 @@ public class ThreadService {
     private String merge(Integer num) {
         try {
             // 模拟处理耗时
-            Thread.sleep(10000L);
-            return "KOBE : " + num;
+            Thread.sleep(10 * 1000L);
+            return randomSalt() + " : " + num;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return "";
     }
+
+    private String randomSalt() {
+        List<String> salts = Arrays.asList(mergeSalt.split(","));
+
+        return salts.get(RandomUtils.nextInt(salts.size()));
+    }
+
 }
