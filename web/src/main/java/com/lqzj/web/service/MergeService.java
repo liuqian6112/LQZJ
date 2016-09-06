@@ -21,9 +21,9 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 @Service
-public class ThreadService {
+public class MergeService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ThreadService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MergeService.class);
 
     // merge超时时间为30秒
     private static final int MERGE_TIME_OUT_IN_SECONDS = 30;
@@ -67,7 +67,7 @@ public class ThreadService {
         try {
             future = threadPool.submit(() -> merge(num));
             mergeResult = future.get(MERGE_TIME_OUT_IN_SECONDS, TimeUnit.SECONDS);
-        } catch (TimeoutException exception){
+        } catch (TimeoutException exception) {
             LOGGER.error("merge time out : ", exception);
         } catch (Exception exception) {
             LOGGER.error("merge failed: ", exception);

@@ -1,6 +1,6 @@
 package com.lqzj.web.controller;
 
-import com.lqzj.web.service.ThreadService;
+import com.lqzj.web.service.MergeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/thread")
-public class ThreadController {
+@RequestMapping("/merge")
+public class MergeController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ThreadController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MergeController.class);
 
     @Autowired
-    private ThreadService threadService;
+    private MergeService mergeService;
 
-    @RequestMapping(value = "merge/{num}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{num}", method = RequestMethod.GET)
     public String mergeNum(@PathVariable("num") Integer num) {
         LOGGER.info("merge num : {}", num);
-        return threadService.mergeNum(num);
+        return mergeService.mergeNum(num);
     }
 }
