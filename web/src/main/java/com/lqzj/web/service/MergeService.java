@@ -2,11 +2,13 @@ package com.lqzj.web.service;
 
 import com.google.common.collect.Maps;
 import com.lqzj.common.thread.ThreadPool;
+import com.lqzj.core.event.ReloadMergeEvent;
 import org.apache.commons.lang.math.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -21,7 +23,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 @Service
-public class MergeService {
+public class MergeService implements ApplicationListener<ReloadMergeEvent> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MergeService.class);
 
@@ -109,4 +111,14 @@ public class MergeService {
         return salts.get(RandomUtils.nextInt(salts.size()));
     }
 
+    @Override
+    public void onApplicationEvent(ReloadMergeEvent reloadMergeEvent) {
+        int reloadNum = reloadMergeEvent.getReloadNum();
+
+        LOGGER.info("try to remove : {} from merge results", reloadNum);
+        if (mergeResults.containsKey(reloadNum)) {
+            mergeResults.remove(reloadNum);
+            LOGGER.info("success remove");
+        }
+    }
 }
