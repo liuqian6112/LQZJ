@@ -2,7 +2,7 @@ package com.lqzj.web.service;
 
 import com.google.common.collect.Maps;
 import com.lqzj.common.thread.ThreadPool;
-import com.lqzj.core.event.ReloadMergeEvent;
+import com.lqzj.common.event.ReloadMergeEvent;
 import org.apache.commons.lang.math.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +55,6 @@ public class MergeService implements ApplicationListener<ReloadMergeEvent> {
             readLock.lock();
 
             String result = mergeResults.get(num);
-
             if (!StringUtils.isEmpty(result)) {
                 return result;
             }
@@ -63,23 +62,13 @@ public class MergeService implements ApplicationListener<ReloadMergeEvent> {
             readLock.unlock();
         }
 
-        String mergeResult = "";
-        Future<String> future = null;
+        String mergeResult = startThreadMerge(num, timeout);
+        judgeMergeResult(num, mergeResult);
 
-        try {
-            future = threadPool.submit(() -> merge(num));
-            mergeResult = future.get(MERGE_TIME_OUT_IN_SECONDS, TimeUnit.SECONDS);
-        } catch (TimeoutException exception) {
-            LOGGER.error("merge time out : ", exception);
-        } catch (Exception exception) {
-            LOGGER.error("merge failed: ", exception);
-        } finally {
-            // 结束线程的运行
-            if (future != null && !future.isDone()) {
-                future.cancel(true);
-            }
-        }
+        return mergeResult;
+    }
 
+    private void judgeMergeResult(Integer num, String mergeResult) {
         if (!StringUtils.isEmpty(mergeResult)) {
             // 缓存merge结果
             try {
@@ -90,7 +79,25 @@ public class MergeService implements ApplicationListener<ReloadMergeEvent> {
                 writeLock.unlock();
             }
         }
+    }
 
+    private String startThreadMerge(Integer num, long timeout) {
+        String mergeResult = "";
+        Future<String> future = null;
+
+        try {
+            future = threadPool.submit(() -> merge(num));
+            mergeResult = future.get(timeout, TimeUnit.SECONDS);
+        } catch (TimeoutException exception) {
+            LOGGER.error("merge time out : ", exception);
+        } catch (Exception exception) {
+            LOGGER.error("merge failed: ", exception);
+        } finally {
+            // 结束线程的运行
+            if (future != null && !future.isDone()) {
+                future.cancel(true);
+            }
+        }
         return mergeResult;
     }
 

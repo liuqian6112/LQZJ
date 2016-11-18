@@ -1,4 +1,4 @@
-package com.lqzj.core.redis.service;
+package com.lqzj.common.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +25,7 @@ public class StringRedisService {
         if (timeoutSeconds <= 0) {
             valueOperations.set(key, value);
         } else {
-            valueOperations.set(key, value, timeoutSeconds, TimeUnit.SECONDS);
+            valueOperations.set(key, value, timeoutSeconds, TimeUnit.MINUTES);
         }
         logger.info("cached to redis, key: [{}], expired seconds: [{}]", key, timeoutSeconds);
     }

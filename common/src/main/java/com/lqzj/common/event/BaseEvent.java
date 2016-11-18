@@ -1,4 +1,4 @@
-package com.lqzj.core.event;
+package com.lqzj.common.event;
 
 import org.springframework.context.ApplicationEvent;
 

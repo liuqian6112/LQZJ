@@ -10,6 +10,7 @@ import java.util.Date;
 public class User {
     private long id;
     private String name;
+    private String sex;
     private Integer age;
     private String address;
     private String phone;

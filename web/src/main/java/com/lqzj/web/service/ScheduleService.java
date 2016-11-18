@@ -22,7 +22,7 @@ public class ScheduleService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ScheduleService.class);
 
     // 处理线程默认休眠时间
-    private final static int DEFAULT_INTERVAL = 10 * 60 * 1000;//10分钟
+    private static final int DEFAULT_INTERVAL = 10 * 60 * 1000;//10分钟
 
     @Autowired
     private UserDao userDao;

@@ -1,6 +1,6 @@
 package com.lqzj.web.service;
 
-import com.lqzj.core.event.ReloadMergeEvent;
+import com.lqzj.common.event.ReloadMergeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;

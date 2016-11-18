@@ -2,7 +2,7 @@ package com.lqzj.web.service;
 
 import com.lqzj.common.exception.Assert;
 import com.lqzj.common.exception.ErrorCode;
-import com.lqzj.core.redis.service.StringRedisService;
+import com.lqzj.common.service.StringRedisService;
 import com.lqzj.web.dao.UserDao;
 import com.lqzj.web.model.User;
 import org.springframework.beans.factory.annotation.Autowired;

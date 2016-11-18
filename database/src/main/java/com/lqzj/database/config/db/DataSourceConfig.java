@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 @PropertySource("classpath:application-db.properties")
 public class DataSourceConfig {
 
-    public static final String PREFIX = "spring.datasource";
+    private static final String PREFIX = "spring.datasource";
 
     @Bean
     @ConfigurationProperties(prefix = DataSourceConfig.PREFIX)
