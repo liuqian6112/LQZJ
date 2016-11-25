@@ -214,10 +214,20 @@
                 <app.allowHeaders>Content-Type, Accept, X-File-Name</app.allowHeaders>
                 <app.cacheControl>no-cache, must-revalidate</app.cacheControl>
                 <app.pragma>no-cache</app.pragma>
-                <spring.datasource.url>jdbc:mysql://127.0.0.1:3306/lenovo</spring.datasource.url>
-                <spring.datasource.username>root</spring.datasource.username>
-                <spring.datasource.password> </spring.datasource.password>
-                <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+                <datasource.host>127.0.0.1</datasource.host>
+                <datasource.port>3306</datasource.port>
+                <datasource.schema>lenovo</datasource.schema>
+                <datasource.user>root</datasource.user>
+                <datasource.password> </datasource.password>
+                <datasource.minPoolSize>1</datasource.minPoolSize>
+                <datasource.maxPoolSize>50</datasource.maxPoolSize>
+                <datasource.initialPoolSize>3</datasource.initialPoolSize>
+                <datasource.maxIdleTime>25000</datasource.maxIdleTime>
+                <datasource.acquireIncrement>2</datasource.acquireIncrement>
+                <datasource.preferredTestQuery>select 1</datasource.preferredTestQuery>
+                <datasource.idleConnectionTestPeriod>18000</datasource.idleConnectionTestPeriod>
+                <datasource.numHelperThreads>8</datasource.numHelperThreads>
+                <datasource.initMigrate>true</datasource.initMigrate>
                 <spring.redis.host>127.0.0.1</spring.redis.host>
                 <spring.redis.port>6379</spring.redis.port>
                 <spring.redis.password> </spring.redis.password>

@@ -1,5 +1,6 @@
 package com.lqzj.web.dao;
 
+import com.lqzj.common.query.PageQuery;
 import com.lqzj.web.model.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,4 +13,9 @@ public interface UserDao {
 
     List<User> getUserByCreated(@Param("created") Date created);
 
+    void saveUser(User user);
+
+    int countUser();
+
+    List<User> queryUser(PageQuery pageQuery);
 }

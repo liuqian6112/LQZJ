@@ -3,11 +3,22 @@
 <mapper namespace="com.lqzj.web.dao.UserDao">
 
     <select id="getUser" resultType="com.lqzj.web.model.User">
-        SELECT * FROM user WHERE id = #{id};
+        SELECT * FROM user WHERE id = #{id}
     </select>
 
     <select id="getUserByCreated" resultType="com.lqzj.web.model.User">
-        SELECT * FROM user WHERE created > #{created};
+        SELECT * FROM user WHERE created > #{created}
     </select>
 
+    <insert id="saveUser">
+        INSERT user (name, age, address) VALUES (#{name}, #{age}, #{address})
+    </insert>
+
+    <select id="countUser" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM user
+    </select>
+
+    <select id="queryUser" resultType="com.lqzj.web.model.User">
+        SELECT * FROM user ORDER BY name ASC limit #{pageStart}, #{pageSize}
+    </select>
 </mapper>

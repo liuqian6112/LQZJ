@@ -1,17 +1,17 @@
 package com.lqzj.web.controller;
 
+import com.lqzj.common.annotation.RequestLogger;
+import com.lqzj.common.query.PageQuery;
+import com.lqzj.common.wrapper.PageResponseWrapper;
 import com.lqzj.web.model.User;
 import com.lqzj.web.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/user")
@@ -40,19 +40,16 @@ public class UserController {
         return userService.getUser(id);
     }
 
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
+    @RequestLogger
+    public void saveUser(@RequestBody User user) throws IOException {
+        userService.saveUser(user);
+    }
+
     @RequestMapping(value = "/getAllUser", method = RequestMethod.GET)
-    public List<User> getAllUser() {
-        User user1 = new User();
-        user1.setName("LiuQian");
-        user1.setSex("Boy");
-        user1.setPhone("12121");
-        User user2 = new User();
-        user2.setName("LiuYiFei");
-        user2.setSex("Girl");
-        user2.setPhone("37373");
-        List<User> userList = new ArrayList<>();
-        userList.add(user1);
-        userList.add(user2);
-        return userList;
+    public PageResponseWrapper<User> getAllUser(@Valid
+                                 @ModelAttribute PageQuery pageQuery) {
+
+        return userService.query(pageQuery);
     }
 }

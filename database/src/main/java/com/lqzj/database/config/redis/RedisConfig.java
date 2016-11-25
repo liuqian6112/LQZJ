@@ -1,6 +1,6 @@
 package com.lqzj.database.config.redis;
 
-import com.lqzj.common.config.RedisConfigProperties;
+import com.lqzj.common.properties.RedisConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;

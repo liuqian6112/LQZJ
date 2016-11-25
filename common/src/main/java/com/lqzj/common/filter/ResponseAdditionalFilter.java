@@ -1,6 +1,6 @@
 package com.lqzj.common.filter;
 
-import com.lqzj.common.config.CommonProperties;
+import com.lqzj.common.properties.CommonProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
