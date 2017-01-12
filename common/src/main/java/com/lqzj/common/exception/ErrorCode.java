@@ -12,7 +12,11 @@ public enum  ErrorCode {
     UNAUTHORIZED(4, HttpStatus.UNAUTHORIZED, "未授权的访问"),
     SERVER_UPLOAD_PATH_NOT_READY(5, HttpStatus.INTERNAL_SERVER_ERROR, "服务器文件上传路径不存在"),
     BEAN_VALIDATION_ERROR(6, HttpStatus.UNPROCESSABLE_ENTITY, "数据校验错误"),
-    PARAMETER_NOT_NULL(7, HttpStatus.BAD_REQUEST, "参数不能为空");
+    PARAMETER_NOT_NULL(7, HttpStatus.BAD_REQUEST, "参数不能为空"),
+
+    UPLOAD_FILE_EMPTY(10001, HttpStatus.BAD_REQUEST, "上传文件不能为空"),
+    UPLOAD_FILE_ERROR(10002, HttpStatus.BAD_REQUEST, "上传文件出错"),
+    ILLEGAL_UPLOAD_NAME(10003, HttpStatus.BAD_REQUEST, "非法文件模块名");
 
     private final int code;
     private final HttpStatus status;
