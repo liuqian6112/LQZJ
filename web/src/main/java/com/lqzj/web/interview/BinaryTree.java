@@ -151,6 +151,8 @@ public class BinaryTree {
                 } else {
                     Integer minValue = findMinValue(node.right);
                     BinaryTree newNode = new BinaryTree(String.valueOf(minValue));
+                    newNode.left = node.left;
+                    newNode.right = node.right;
                     if (parent.left == node) {
                         parent.left = newNode;
                     } else if (parent.right == node) {
