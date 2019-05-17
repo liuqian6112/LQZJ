@@ -13,14 +13,12 @@ import java.util.UUID;
 /**
  * @author liuqian1
  */
-@RestController
+//@RestController
 public class SendController {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @Autowired
-    private Channel channel;
 
     @RequestMapping("/send")
     public String send3() throws UnsupportedEncodingException {

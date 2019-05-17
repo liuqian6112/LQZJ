@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author liuqian1
  */
-@Configuration
+//@Configuration
 public class ConnectionFactoryConfigure {
     @Value("${spring.rabbitmq.host}")
     public String host;

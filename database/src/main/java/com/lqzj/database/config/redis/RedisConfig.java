@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
@@ -41,5 +42,19 @@ public class RedisConfig extends RedisAutoConfiguration {
         redisTemplate.setValueSerializer(new StringRedisSerializer());
 
         return redisTemplate;
+    }
+
+    @Bean
+    public JedisPoolConfig getRedisConfig() {
+
+        return new JedisPoolConfig();
+    }
+
+    @Bean
+    public JedisPool getJedisPool() {
+        JedisPoolConfig config = getRedisConfig();
+
+        return new JedisPool(config, redisConfigProperties.getHost(), redisConfigProperties.getPort(),
+                redisConfigProperties.getTimeout(), redisConfigProperties.getPassword());
     }
 }

@@ -51,11 +51,12 @@ public class ProxyTestServiceImpl implements ProxyTestService {
         user.setPassword("liuqian");
         userDao.saveUser(user);
         List<User> allUser = userDao.getAllUser();
+        allUser.forEach(user1 -> System.out.println(user1.getName()));
 //        ((ProxyTestService) AopContext.currentProxy()).get(); // 无法使用
 //        get();
 //        proxyTestServiceExt.get();// 挪到另一个接口
         proxyTestService.get();//初始化注入
-        int i = 1 / 0;
+//        int i = 1 / 0;
     }
 
     @Override

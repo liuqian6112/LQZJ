@@ -181,7 +181,7 @@
                 <datasource.initMigrate>true</datasource.initMigrate>
                 <spring.redis.host>127.0.0.1</spring.redis.host>
                 <spring.redis.port>6379</spring.redis.port>
-                <spring.redis.password> </spring.redis.password>
+                <spring.redis.password>foobared</spring.redis.password>
                 <spring.redis.maxIdle>5</spring.redis.maxIdle>
                 <spring.redis.minIdle>1</spring.redis.minIdle>
                 <spring.redis.timeout>1000</spring.redis.timeout>
